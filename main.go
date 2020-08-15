@@ -18,12 +18,15 @@ type Response struct {
 func main() {
 	e := echo.New()
 	e.GET("/", func(c echo.Context) error {
-		return c.JSON(http.StatusOK, &Response{PrimeNumber: handleRequest()})
+		return c.JSON(http.StatusOK, &Response{PrimeNumber: ProducePrime()})
 	})
 	e.Logger.Fatal(e.Start(":1323"))
 }
 
-func handleRequest() int {
+// ProducePrime returns a single prime number from a sieve
+// Note: The seive could have been precomputed, but the aim of this
+// API is to stress test CPU resources
+func ProducePrime() int {
 	count := 10000000
 	primes := generate(count, time.Second*2)
 	r1 := rand.New(rand.NewSource(time.Now().UnixNano()))
