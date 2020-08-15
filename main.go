@@ -20,7 +20,7 @@ func main() {
 	e.GET("/", func(c echo.Context) error {
 		return c.JSON(http.StatusOK, &Response{PrimeNumber: ProducePrime()})
 	})
-	e.Logger.Fatal(e.Start(":1323"))
+	e.Logger.Fatal(e.Start(":3000"))
 }
 
 // ProducePrime returns a single prime number from a sieve
